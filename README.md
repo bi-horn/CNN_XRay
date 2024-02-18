@@ -1,4 +1,4 @@
-# CNN
+# Machine Learning - Convolutional Neural Networks
 Convolutional Neural Networks with test datasets
 
 
