@@ -4,7 +4,7 @@ Convolutional Neural Networks with test datasets
 
 ## CNN with Pytorch - Medical Image Diagnosis (2 classes)
 
-Dataset downloaded from: https://www.kaggle.com/datasets/paulti/chest-xray-images
+Dataset downloaded from: https://data.mendeley.com/datasets/rscbjbr9sj/3
 5,856 chest X-ray images of patients with and without pneumonia; 2 classes Normal (1,342) and Pneumonia (4,514), of size 1024*1024
 
 Because CUDA is not available for download on a MacOS system anymore, I used Google Colab since it already has the CUDA toolkit and drivers installed on its virtual machines
