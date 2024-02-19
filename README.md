@@ -13,6 +13,11 @@ Because CUDA is not available for download on a MacOS system anymore, I used Goo
 
 I tested ResNet18 but also a simpler self-defined neural network on that dataset
 
+## CNN with Tensorflow - Traffic sign classification (43 classes)
+
+Dataset downloaded from: https://cdn.cs50.net/ai/2023/x/projects/5/traffic.zip
+
+Convolutional Neural Network categorises the traffic signs
 
 
 
