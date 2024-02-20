@@ -8,7 +8,7 @@ Convolutional Neural Networks with test datasets
 Inspiration: Kermany, D. S., Goldbaum, M., Cai, W., Valentim, C. C., Liang, H., Baxter, S. L. & Zhang, K. (2018). Identifying medical diagnoses and treatable diseases by image-based deep learning. cell, 172(5), 1122-1131.
 
 Dataset downloaded from: https://data.mendeley.com/datasets/rscbjbr9sj/2
-5,856 chest X-ray images of patients with and without pneumonia; 2 classes Normal (1,582) and Pneumonia (4,273), of size 1024*1024
+5,855 chest X-ray images of patients with and without pneumonia; 2 classes Normal (1,582) and Pneumonia (4,273), of size 1024*1024
 
 Because CUDA is not available for download on a MacOS system anymore, I used Google Colab since it already has the CUDA toolkit and drivers installed on its virtual machines
 
