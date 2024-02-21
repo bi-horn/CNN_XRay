@@ -1,8 +1,5 @@
-# Machine Learning - Convolutional Neural Networks
-Convolutional Neural Networks with test datasets
+# Machine Learning - Convolutional Neural Networks with PyTorch
 
-
-## CNN with Pytorch - Medical Image Diagnosis 
 ### Application of an AI System for Pneumonia Detection Using Chest X-Ray Images
 
 Inspiration: Kermany, D. S., Goldbaum, M., Cai, W., Valentim, C. C., Liang, H., Baxter, S. L. & Zhang, K. (2018). Identifying medical diagnoses and treatable diseases by image-based deep learning. cell, 172(5), 1122-1131.
@@ -12,7 +9,9 @@ Dataset downloaded from: https://data.mendeley.com/datasets/rscbjbr9sj/2
 
 Because CUDA is not available for download on a MacOS system anymore, I used Google Colab since it already has the CUDA toolkit and drivers installed on its virtual machines
 
-I tested ResNet18 but also a simpler self-defined neural network on that dataset
+Goal 1: Comparison of a network with a deep neural structure (ResNet34) vs a simple self-defined convolutional neural network (CNN_XRay.ipynb)
+
+Goal 2: Comparison of a pretrained and not pretrained network with a deep neural structure (ResNet34) (CNN_XRay_TransferLearning.ipynb)
 
 
 
