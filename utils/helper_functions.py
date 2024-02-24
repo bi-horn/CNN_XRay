@@ -4,12 +4,7 @@ Helper functions
 
 """
 
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
-
 import numpy as np
-import pandas as pd
 import matplotlib.pyplot as plt
 from torchvision.models.inception import InceptionOutputs
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix, ConfusionMatrixDisplay
@@ -19,7 +14,6 @@ from sklearn.metrics import roc_auc_score, roc_curve, auc
 import os, time, random, torch, warnings
 from PIL import Image
 from tqdm import tqdm
-import torch.optim as optim
 import torchvision.datasets as datasets
 import torchvision.transforms as transforms
 from torch.utils.data import DataLoader, random_split
@@ -27,7 +21,7 @@ from sklearn.metrics import precision_score, recall_score, f1_score
 
 
 #Data Preprocessing
-def data_preprocess(data_path, sample_ratio):
+def data_preprocess(data_path, sample_ratio, batch_size):
   # Create data transforms
   data_transforms = transforms.Compose([
     #standard measures if you want to use e.g. ResNet18
@@ -45,9 +39,9 @@ def data_preprocess(data_path, sample_ratio):
   indices = np.random.choice(range(len(dataset)), num_samples, replace = False)
 
   # Split the data into training, test, and validation sets
-  train_size = int(0.7 * num_samples)
-  test_size = int(0.2 * num_samples)
-  val_size = num_samples - train_size - test_size
+  train_size = int(0.7 * num_samples) #70% of the dataset is for training
+  test_size = int(0.2 * num_samples) #20% of the dataset is for testing
+  val_size = num_samples - train_size - test_size #10% of the dataset is for validation
 
   train_indices = indices[ : train_size]
   test_indices = indices[train_size : train_size + test_size]
@@ -65,13 +59,13 @@ def data_preprocess(data_path, sample_ratio):
   return dataset, train_loader, train_indices, test_loader, test_indices, val_loader, val_indices
 
 #save the metrics after training
-def save_metrics(loss, accuracy, validation_loss, validation_accuracy, model):
+def save_metrics(loss, accuracy, validation_loss, validation_accuracy, model, data_path):
     np.save("{}{}_train_loss.npy".format(data_path, model), loss)
     np.save("{}{}_train_accuracy.npy".format(data_path, model), accuracy)
     np.save("{}{}_validation_loss.npy".format(data_path, model), validation_loss)
     np.save("{}{}_validation_accuracy.npy".format(data_path, model), validation_accuracy)
 
-def train_model(model, criterion, optimizer, model_name, num_epochs):
+def train_model(model, data_path, device, criterion, optimizer, model_name, num_epochs, train_loader, train_indices, test_loader, test_indices, val_loader, val_indices):
 
   start1_time = time.time()
 
@@ -128,7 +122,7 @@ def train_model(model, criterion, optimizer, model_name, num_epochs):
     losses.append(train_loss/len(train_indices))
     accuracies.append(train_accuracy.item()/len(train_indices))
 
-  save_metrics(losses, accuracies, v_losses, v_accuracies, model_name)
+  save_metrics(losses, accuracies, v_losses, v_accuracies, model_name, data_path)
 
   current_time = time.time()
   total = current_time - start1_time
@@ -136,7 +130,7 @@ def train_model(model, criterion, optimizer, model_name, num_epochs):
 
   return losses, accuracies, v_accuracies, v_losses
 
-def evaluate_model(model, dataloader, data_size, dtype, criterion, data_path, model_name):
+def evaluate_model(model, device, dataloader, data_size, dtype, criterion, data_path, model_name):
   _loss, _pred, _true, _accuracy = 0.0, [], [], []
   model.eval()
 
@@ -212,7 +206,7 @@ def plot_model_curves(losses, accuracies, v_accuracies, v_losses, data_path, mod
   plt.show()
 
 #Evaluate Model on Test Set
-def plot_confusion_mat(_true, _pred, model_name, dataloader, dtype, data_path):
+def plot_confusion_mat(dataset, _true, _pred, model_name, dataloader, dtype, data_path):
     # calculate confusion matrix
     cm = confusion_matrix(_true, _pred)
 
