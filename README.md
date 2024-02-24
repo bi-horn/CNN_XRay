@@ -8,8 +8,9 @@ Dataset downloaded from: https://data.mendeley.com/datasets/rscbjbr9sj/2
 5,855 chest X-ray images of patients with and without pneumonia; 2 classes Normal (1,582) and Pneumonia (4,273)
 
 Because CUDA is not available for download on a MacOS system anymore, I used Google Colab since it already has the CUDA toolkit and drivers installed on its virtual machines
+If working with Jupyter Notebook is preferred, an alternative version with slight customizations is available (CNN_XRay_Jupyter.ipynb).
 
-#### Goal 1: Comparison of a network with a deep neural structure (ResNet34) vs a simple self-defined neural network (2 convolutional layers and 3 fully connected layers) (CNN_XRay.ipynb)
+#### Goal 1: Comparison of a network with a deep neural structure (ResNet34) vs a simple self-defined neural network (2 convolutional layers and 3 fully connected layers) (CNN_XRay.ipynb or CNN_XRay_Jupyter.ipynb)
 
 The simple CNN model outperforms the more complex ResNet34 model in detecting Pneumonia in X-ray images. Despite its simplicity, the simple CNN achieves an accuracy of over 90% after just the third epoch, whereas the ResNet34 model achieves similar accuracy only after the fifth epoch.
 
