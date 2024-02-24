@@ -324,7 +324,7 @@ def plot_model_curves_comp_with_simple(losses, accuracies, v_accuracies, v_losse
   y_step = 0.1
   x_step = 2
 
-  ax1.plot(losses, label = "Training Loss - ResNet34, color='darkblue')
+  ax1.plot(losses, label = "Training Loss - ResNet34", color='darkblue')
   ax1.plot(v_losses, label = "Validation Loss - ResNet34", color='lightblue')
   #ax1.set_xlabel('Epoch')
   ax1.set_ylabel('Loss')
