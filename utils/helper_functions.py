@@ -65,7 +65,7 @@ def save_metrics(loss, accuracy, validation_loss, validation_accuracy, model, da
     np.save("{}{}_validation_loss.npy".format(data_path, model), validation_loss)
     np.save("{}{}_validation_accuracy.npy".format(data_path, model), validation_accuracy)
 
-def train_model(model, data_path, device, criterion, optimizer, model_name, num_epochs, train_loader, train_indices, test_loader, test_indices, val_loader, val_indices):
+def train_model(model, data_path, device, criterion, optimizer, model_name, num_epochs, train_loader, train_indices, test_loader, test_indices, val_loader, val_indices, dtype):
 
   start1_time = time.time()
 
